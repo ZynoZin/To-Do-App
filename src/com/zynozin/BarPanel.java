@@ -5,15 +5,16 @@ import java.awt.*;
 
 public class BarPanel extends JPanel {
     private CommandBarPanel commandBarPanel;
+    private CommandsLabel menuLabel;
 
-    public BarPanel(){
-
-        commandBarPanel  = new CommandBarPanel();
+    public BarPanel() {
+        menuLabel = new CommandsLabel("Menu");
+        commandBarPanel = new CommandBarPanel();
         this.setLayout(new BorderLayout());
         this.add(commandBarPanel, BorderLayout.EAST);
-
+        this.add(menuLabel, BorderLayout.WEST);
         this.setOpaque(true);
-        this.setPreferredSize(new Dimension(WIDTH, 46));
-        this.setBackground(new Color(200, 27, 10));
+        this.setPreferredSize(new Dimension(MyFrame.WIDTH, 46));
+        this.setBackground(new Color(37, 37, 37));
     }
 }
