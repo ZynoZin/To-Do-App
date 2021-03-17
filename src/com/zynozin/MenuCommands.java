@@ -10,7 +10,7 @@ public class MenuCommands extends JPanel {
     private MenuOption checkList = new MenuOption("Checklist");
     private MenuOption readingJournal = new MenuOption("Reading Journal");
     private MenuOption notes = new MenuOption("Notes");
-    private MenuOption wishList = new MenuOption("Wish List");
+    private MenuOption wishList = new MenuOption("Wishlist");
 
     public MenuCommands() {
         this.setPreferredSize(new Dimension(178, 300));

@@ -12,10 +12,12 @@ public class MyFrame extends JFrame {
     private BarPanel barPanel;
     Dimension dimMax = Toolkit.getDefaultToolkit().getScreenSize();
     private MenuPanel menuPanel;
+    public static MainContent mainContent;
 
     public MyFrame() {
         barPanel = new BarPanel();
         menuPanel = new MenuPanel();
+        mainContent = new MainContent();
         /*
         ComponentResizer cr = new ComponentResizer();
         cr.registerComponent(this);
@@ -29,6 +31,7 @@ public class MyFrame extends JFrame {
         this.setLayout(new BorderLayout());
         this.add(barPanel, BorderLayout.NORTH);
         this.add(menuPanel, BorderLayout.WEST);
+        this.add(mainContent, BorderLayout.CENTER);
         this.setUndecorated(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBackground(new Color(37, 37, 37, 254));
