@@ -18,10 +18,13 @@ public class MainContent extends JPanel {
 
     };
     private ContentHeader contentHeader = contentHeaders[0];
+    private ContentFooter contentFooter;
 
     public MainContent() {
+        contentFooter = new ContentFooter();
         this.setLayout(new BorderLayout());
         this.add(contentHeader, BorderLayout.NORTH);
+        this.add(contentFooter, BorderLayout.SOUTH);
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(new Color(37, 37, 37));
