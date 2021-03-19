@@ -19,11 +19,17 @@ public class MainContent extends JPanel {
     };
     private ContentHeader contentHeader = contentHeaders[0];
     private ContentFooter contentFooter;
+    private ContentData contentData;
+    private ModernScrollPane modernScrollPane;
 
     public MainContent() {
         contentFooter = new ContentFooter();
+        contentData = new ContentData();
+        ModernScrollPane modernScrollPane = new ModernScrollPane(contentData);
+        this.add(modernScrollPane);
         this.setLayout(new BorderLayout());
         this.add(contentHeader, BorderLayout.NORTH);
+        this.add(modernScrollPane, BorderLayout.CENTER);
         this.add(contentFooter, BorderLayout.SOUTH);
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
