@@ -19,12 +19,12 @@ public class MainContent extends JPanel {
     };
     private ContentHeader contentHeader = contentHeaders[0];
     private ContentFooter contentFooter;
-    private ContentData contentData;
+    private TasksContentData contentData;
     private ModernScrollPane modernScrollPane;
 
     public MainContent() {
         contentFooter = new ContentFooter();
-        contentData = new ContentData();
+        contentData = new TasksContentData();
         ModernScrollPane modernScrollPane = new ModernScrollPane(contentData);
         this.add(modernScrollPane);
         this.setLayout(new BorderLayout());

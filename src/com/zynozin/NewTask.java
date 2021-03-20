@@ -29,9 +29,9 @@ public class NewTask extends JLabel implements MouseListener {
     public void mousePressed(MouseEvent e) {
         TasksLabel tasksLabel = new TasksLabel();
         this.setVisible(false);
-        ContentData.nextCategory.add(tasksLabel);
+        TasksContentData.nextCategory.add(tasksLabel);
         this.setVisible(true);
-        ContentData.nextCategory.add(this);
+        TasksContentData.nextCategory.add(this);
     }
 
     @Override
