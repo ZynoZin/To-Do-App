@@ -2,6 +2,8 @@ package com.zynozin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class MainContent extends JPanel {
@@ -21,20 +23,26 @@ public class MainContent extends JPanel {
     private ContentHeader contentHeader = contentHeaders[0];
     private ContentFooter contentFooter;
     private TasksContentData contentData;
-    private ModernScrollPane modernScrollPane;
+    public static NotesPanel notesPanel;
+    public static ModernScrollPane tasksContentScrollPane;
 
     public MainContent() throws IOException {
         contentFooter = new ContentFooter();
         contentData = new TasksContentData();
-        ModernScrollPane modernScrollPane = new ModernScrollPane(contentData);
-        this.add(modernScrollPane);
+        notesPanel = new NotesPanel();
+        tasksContentScrollPane = new ModernScrollPane(contentData);
         this.setLayout(new BorderLayout());
         this.add(contentHeader, BorderLayout.NORTH);
-        this.add(modernScrollPane, BorderLayout.CENTER);
+        initVisibility();
+        writeSavedElements();
         this.add(contentFooter, BorderLayout.SOUTH);
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(new Color(37, 37, 37));
+    }
+
+    public void initVisibility() {
+        this.add(tasksContentScrollPane, BorderLayout.CENTER);
     }
 
     public void setContentHeader(ContentHeader contentHeader) {
@@ -42,6 +50,25 @@ public class MainContent extends JPanel {
         this.contentHeader = contentHeader;
         this.add(this.contentHeader, BorderLayout.NORTH);
         this.contentHeader.setVisible(true);
+    }
+
+    private void writeSavedElements() throws IOException {
+        BufferedReader notes = new BufferedReader(new FileReader("files/notes.txt"));
+        String notesLine = notes.readLine();
+        try {
+            StringBuilder sb = new StringBuilder();
+            while (notesLine != null) {
+                sb.append(notesLine);
+                sb.append(System.lineSeparator());
+                notesLine = notes.readLine();
+            }
+            notesPanel.notesArea.setText(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            notes.close();
+        }
+
     }
 
     public ContentHeader getContentHeader() {
