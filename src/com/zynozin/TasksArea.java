@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import components.DocumentSizeFilter;
 
 public class TasksArea extends JTextArea {
-    private Font tasksFont = Main.getFontforApp(18f, "fonts/Vinson-Bold.ttf");
+    private Font tasksFont = Main.getFontforApp(16f, "fonts/Montserrat-Medium.ttf");
     private DefaultStyledDocument doc = new DefaultStyledDocument();
 
 
@@ -21,6 +21,7 @@ public class TasksArea extends JTextArea {
         doc.setDocumentFilter(new DocumentSizeFilter(60));
         this.setBackground(new Color(250, 37, 37));
         this.setLineWrap(true);
+        this.setCaretColor(Color.WHITE);
         this.setWrapStyleWord(true);
         this.setOpaque(false);
         this.setBounds(4, 4, 300, 50);

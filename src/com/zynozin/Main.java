@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Main {
     public static MyFrame frame;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         frame = new MyFrame();
     }
 

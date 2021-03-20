@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class MyFrame extends JFrame {
     public static final int WIDTH = 1300;
@@ -14,7 +15,7 @@ public class MyFrame extends JFrame {
     private MenuPanel menuPanel;
     public static MainContent mainContent;
 
-    public MyFrame() {
+    public MyFrame() throws IOException {
         barPanel = new BarPanel();
         menuPanel = new MenuPanel();
         mainContent = new MainContent();

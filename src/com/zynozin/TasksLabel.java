@@ -38,7 +38,7 @@ public class TasksLabel extends JLabel implements MouseListener {
         left.setVisible(false);
         this.setBorder(new MatteBorder(0, 0, 1, 0, Color.DARK_GRAY));
         this.setOpaque(true);
-        this.setPreferredSize(new Dimension(330, 65));
+        this.setPreferredSize(new Dimension(330, 68));
 
     }
 

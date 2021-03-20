@@ -2,6 +2,7 @@ package com.zynozin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainContent extends JPanel {
     private final int WIDTH = 1122;
@@ -22,7 +23,7 @@ public class MainContent extends JPanel {
     private TasksContentData contentData;
     private ModernScrollPane modernScrollPane;
 
-    public MainContent() {
+    public MainContent() throws IOException {
         contentFooter = new ContentFooter();
         contentData = new TasksContentData();
         ModernScrollPane modernScrollPane = new ModernScrollPane(contentData);

@@ -46,13 +46,13 @@ public class CommandsLabel extends JLabel implements MouseListener {
             for (TasksLabel tskLabel : TasksContentData.lastTasksSave) {
                 String lineContent = tskLabel.tasksArea.getText();
                 if (tskLabel.currentCategory == "next category") {
-                    nextWriter.write(lineContent);
+                    nextWriter.write(lineContent.replace("\n", " ").replace("\r", " "));
                     nextWriter.newLine();
                 } else if (tskLabel.currentCategory == "in progress category") {
-                    inProgressWriter.write(lineContent);
+                    inProgressWriter.write(lineContent.replace("\n", " ").replace("\r", " "));
                     inProgressWriter.newLine();
                 } else if (tskLabel.currentCategory == "completed category") {
-                    completedWriter.write(lineContent);
+                    completedWriter.write(lineContent.replace("\n", " ").replace("\r", " "));
                     completedWriter.newLine();
                 }
             }
@@ -62,21 +62,6 @@ public class CommandsLabel extends JLabel implements MouseListener {
         } catch (IOException e) {
             // Cxception handling
         }
-        /*
-        BufferedReader br = new BufferedReader(new FileReader("files/sample.txt"));
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            sb.append(line);
-            sb.append(System.lineSeparator());
-            everything= sb.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            br.close();
-        }
-
-         */
     }
 
     @Override
@@ -92,6 +77,7 @@ public class CommandsLabel extends JLabel implements MouseListener {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+            TasksContentData.lastTasksSave.clear();
             Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             Main.frame.dispose();
             System.exit(0);

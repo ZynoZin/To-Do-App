@@ -41,6 +41,7 @@ public class TaskCommands extends JLabel implements MouseListener {
     public void mousePressed(MouseEvent e) {
         if (title == "delete") {
             tasksLabel.setVisible(false);
+            removeElement(tasksLabel);
         } else if (title == "right" && isInNext == true) {
             tasksLabel.setVisible(false);
             TasksContentData.inProgressCategory.add(tasksLabel);
