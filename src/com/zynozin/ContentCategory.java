@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ContentCategory extends JPanel {
     private DataTitle dataTitle;
-
+    
 
     public ContentCategory(String title, int r, int g, int b) {
         dataTitle = new DataTitle(r, g, b, title);

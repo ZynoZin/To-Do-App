@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
+import java.io.*;
 
 public class CommandsLabel extends JLabel implements MouseListener {
     private ImageIcon maximizeIcon = new ImageIcon("images/maximize.png");
@@ -35,6 +35,50 @@ public class CommandsLabel extends JLabel implements MouseListener {
 
     }
 
+    private void saveTasksElements() throws IOException {
+
+        // Write the content in file
+        BufferedWriter nextWriter = new BufferedWriter(new FileWriter("files/nextUp.txt"));
+        BufferedWriter inProgressWriter = new BufferedWriter(new FileWriter("files/inProgress.txt"));
+        BufferedWriter completedWriter = new BufferedWriter(new FileWriter("files/completed.txt"));
+        try {
+            int i = 0;
+            for (TasksLabel tskLabel : TasksContentData.lastTasksSave) {
+                String lineContent = tskLabel.tasksArea.getText();
+                if (tskLabel.currentCategory == "next category") {
+                    nextWriter.write(lineContent);
+                    nextWriter.newLine();
+                } else if (tskLabel.currentCategory == "in progress category") {
+                    inProgressWriter.write(lineContent);
+                    inProgressWriter.newLine();
+                } else if (tskLabel.currentCategory == "completed category") {
+                    completedWriter.write(lineContent);
+                    completedWriter.newLine();
+                }
+            }
+            nextWriter.close();
+            inProgressWriter.close();
+            completedWriter.close();
+        } catch (IOException e) {
+            // Cxception handling
+        }
+        /*
+        BufferedReader br = new BufferedReader(new FileReader("files/sample.txt"));
+        try {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+            sb.append(line);
+            sb.append(System.lineSeparator());
+            everything= sb.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            br.close();
+        }
+
+         */
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -43,6 +87,11 @@ public class CommandsLabel extends JLabel implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (title == "close") {
+            try {
+                saveTasksElements();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             Main.frame.dispose();
             System.exit(0);

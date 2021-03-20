@@ -23,6 +23,14 @@ public class TaskCommands extends JLabel implements MouseListener {
 
     }
 
+    private void removeElement(TasksLabel tasksLabel) {
+        for (TasksLabel temp : TasksContentData.lastTasksSave) {
+            if (temp == tasksLabel) {
+                TasksContentData.lastTasksSave.remove(temp);
+                break;
+            }
+        }
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -36,6 +44,7 @@ public class TaskCommands extends JLabel implements MouseListener {
         } else if (title == "right" && isInNext == true) {
             tasksLabel.setVisible(false);
             TasksContentData.inProgressCategory.add(tasksLabel);
+            tasksLabel.currentCategory = "in progress category";
             tasksLabel.setVisible(true);
             tasksLabel.left.setVisible(true);
             tasksLabel.left.isInNext = false;
@@ -47,6 +56,7 @@ public class TaskCommands extends JLabel implements MouseListener {
         } else if (title == "right" && isInProgress == true) {
             tasksLabel.setVisible(false);
             TasksContentData.completedCategory.add(tasksLabel);
+            tasksLabel.currentCategory = "completed category";
             tasksLabel.setVisible(true);
             tasksLabel.right.setVisible(false);
             tasksLabel.left.isInNext = false;
@@ -60,6 +70,7 @@ public class TaskCommands extends JLabel implements MouseListener {
             tasksLabel.setVisible(false);
             TasksContentData.newTask.setVisible(false);
             TasksContentData.nextCategory.add(tasksLabel);
+            tasksLabel.currentCategory = "next category";
             TasksContentData.nextCategory.add(TasksContentData.newTask);
             tasksLabel.setVisible(true);
             TasksContentData.newTask.setVisible(true);
@@ -74,6 +85,7 @@ public class TaskCommands extends JLabel implements MouseListener {
         } else if (title == "left" && isInCompleted == true) {
             tasksLabel.setVisible(false);
             TasksContentData.inProgressCategory.add(tasksLabel);
+            tasksLabel.currentCategory = "in progress category";
             tasksLabel.setVisible(true);
             tasksLabel.right.setVisible(true);
             tasksLabel.left.isInNext = false;

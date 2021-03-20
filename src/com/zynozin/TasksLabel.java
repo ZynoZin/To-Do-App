@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class TasksLabel extends JLabel implements MouseListener {
-    private TasksArea tasksArea;
+    public TasksArea tasksArea;
     private JLabel hr = new JLabel();
     private JPanel mainCommands;
     private ImageIcon trashIcon = new ImageIcon("images/delete.png");
@@ -18,6 +18,7 @@ public class TasksLabel extends JLabel implements MouseListener {
     private TaskCommands delete;
     public TaskCommands right;
     public TaskCommands left;
+    public String currentCategory = "next category";
 
     public TasksLabel() {
         tasksArea = new TasksArea();
@@ -38,7 +39,7 @@ public class TasksLabel extends JLabel implements MouseListener {
         this.setBorder(new MatteBorder(0, 0, 1, 0, Color.DARK_GRAY));
         this.setOpaque(true);
         this.setPreferredSize(new Dimension(330, 65));
-        
+
     }
 
     @Override

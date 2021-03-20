@@ -32,6 +32,8 @@ public class NewTask extends JLabel implements MouseListener {
         TasksContentData.nextCategory.add(tasksLabel);
         this.setVisible(true);
         TasksContentData.nextCategory.add(this);
+        //adding new tasksLabels to the array to save them later
+        TasksContentData.lastTasksSave.add(tasksLabel);
     }
 
     @Override

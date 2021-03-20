@@ -3,6 +3,8 @@ package com.zynozin;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TasksContentData extends JLabel {
     private final int WIDTH = 1120;
@@ -11,6 +13,7 @@ public class TasksContentData extends JLabel {
     public static ContentCategory inProgressCategory;
     public static ContentCategory completedCategory;
     public static NewTask newTask;
+    public static List<TasksLabel> lastTasksSave = new ArrayList<TasksLabel>();
 
     public TasksContentData() {
         nextCategory = new ContentCategory("Next Up", 204, 0, 0);
