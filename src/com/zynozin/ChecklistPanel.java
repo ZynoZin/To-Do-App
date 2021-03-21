@@ -9,24 +9,47 @@ import javax.swing.text.DefaultStyledDocument;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChecklistPanel extends JPanel {
     private final int WIDTH = 1120;
     private final int HEIGHT = 10000;
     private NewTask newTask;
+    public static List<CheckList> lastChecklistSave = new ArrayList<CheckList>();
 
-    public ChecklistPanel() {
+    public ChecklistPanel() throws IOException {
         newTask = new NewTask("checklist");
         setBackground(new Color(37, 37, 37));
         setOpaque(true);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLayout(new FlowLayout(FlowLayout.LEFT));
+        writeSavedElements();
         add(newTask);
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 15));
         setBorder(new EmptyBorder(50, 100, 0, 0));
 
     }
 
+    public void writeSavedElements() throws IOException {
+        BufferedReader check = new BufferedReader(new FileReader("files/checklist.txt"));
+        String checkLine = check.readLine();
+        try {
+            while (checkLine != null) {
+                CheckList checkList = new CheckList();
+                checkList.textField.setText(checkLine);
+                this.add(checkList);
+                lastChecklistSave.add(checkList);
+                checkLine = check.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            check.close();
+        }
+
+    }
 
     public static class CheckList extends JLabel {
         public JTextField textField;
@@ -63,7 +86,7 @@ public class ChecklistPanel extends JPanel {
 
     public static class CheckBox extends JLabel implements MouseListener {
         private ImageIcon checkedIcon = new ImageIcon("images/checked.png");
-        private Boolean isChecked = false;
+        public String isChecked = "false";
 
         public CheckBox() {
             setPreferredSize(new Dimension(20, 5));
@@ -73,6 +96,16 @@ public class ChecklistPanel extends JPanel {
             addMouseListener(this);
         }
 
+        public void setChecked() {
+            if (isChecked == "false") {
+                setIcon(checkedIcon);
+                isChecked = "true";
+            } else {
+                setIcon(null);
+                isChecked = "false";
+            }
+        }
+
         @Override
         public void mouseClicked(MouseEvent e) {
 
@@ -80,13 +113,7 @@ public class ChecklistPanel extends JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if (isChecked == false) {
-                setIcon(checkedIcon);
-                isChecked = true;
-            } else {
-                setIcon(null);
-                isChecked = false;
-            }
+            setChecked();
         }
 
         @Override

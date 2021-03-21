@@ -44,6 +44,7 @@ public class NewTask extends JLabel implements MouseListener {
             MainContent.checklistPanel.add(checkList);
             MainContent.checklistPanel.add(this);
             this.setVisible(true);
+            ChecklistPanel.lastChecklistSave.add(checkList);
         }
     }
 
