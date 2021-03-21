@@ -24,13 +24,17 @@ public class MainContent extends JPanel {
     private ContentFooter contentFooter;
     private TasksContentData contentData;
     public static NotesPanel notesPanel;
+    public static ChecklistPanel checklistPanel;
     public static ModernScrollPane tasksContentScrollPane;
+    public static ModernScrollPane checklistScrollPane;
 
     public MainContent() throws IOException {
         contentFooter = new ContentFooter();
         contentData = new TasksContentData();
         notesPanel = new NotesPanel();
+        checklistPanel = new ChecklistPanel();
         tasksContentScrollPane = new ModernScrollPane(contentData);
+        checklistScrollPane = new ModernScrollPane(checklistPanel);
         this.setLayout(new BorderLayout());
         this.add(contentHeader, BorderLayout.NORTH);
         initVisibility();

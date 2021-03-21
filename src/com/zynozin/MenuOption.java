@@ -35,6 +35,7 @@ public class MenuOption extends JLabel implements MouseListener {
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[0]);
             ContentFooter.quotes.setAuthor(Quotes.authors[0]);
             MainContent.notesPanel.setVisible(false);
+            MainContent.checklistScrollPane.setVisible(false);
             MyFrame.mainContent.add(MainContent.tasksContentScrollPane, BorderLayout.CENTER);
             MainContent.tasksContentScrollPane.setVisible(true);
         } else if (title == "Project Ideas") {
@@ -49,6 +50,10 @@ public class MenuOption extends JLabel implements MouseListener {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[3]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[3]);
             ContentFooter.quotes.setAuthor(Quotes.authors[3]);
+            MainContent.tasksContentScrollPane.setVisible(false);
+            MainContent.notesPanel.setVisible(false);
+            MyFrame.mainContent.add(MainContent.checklistScrollPane, BorderLayout.CENTER);
+            MainContent.checklistScrollPane.setVisible(true);
         } else if (title == "Reading Journal") {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[4]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[4]);
@@ -58,6 +63,7 @@ public class MenuOption extends JLabel implements MouseListener {
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[5]);
             ContentFooter.quotes.setAuthor(Quotes.authors[5]);
             MainContent.tasksContentScrollPane.setVisible(false);
+            MainContent.checklistScrollPane.setVisible(false);
             MyFrame.mainContent.add(MainContent.notesPanel, BorderLayout.CENTER);
             MainContent.notesPanel.setVisible(true);
         } else if (title == "Wishlist") {

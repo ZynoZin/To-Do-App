@@ -8,9 +8,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class TasksLabel extends JLabel implements MouseListener {
+public class TasksLabel extends JLabel {
     public TasksArea tasksArea;
-    private JLabel hr = new JLabel();
     private JPanel mainCommands;
     private ImageIcon trashIcon = new ImageIcon("images/delete.png");
     private ImageIcon rightIcon = new ImageIcon("images/rightArrow.png");
@@ -22,7 +21,7 @@ public class TasksLabel extends JLabel implements MouseListener {
 
     public TasksLabel() {
         tasksArea = new TasksArea();
-        delete = new TaskCommands(trashIcon, "delete", this);
+        delete = new TaskCommands(trashIcon, "delete task", this);
         right = new TaskCommands(rightIcon, "right", this);
         left = new TaskCommands(leftIcon, "left", this);
         mainCommands = new JPanel();
@@ -42,28 +41,5 @@ public class TasksLabel extends JLabel implements MouseListener {
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
 
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        System.out.println(tasksArea.getText());
-    }
 }

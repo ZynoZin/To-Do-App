@@ -8,10 +8,20 @@ import java.awt.event.MouseListener;
 public class TaskCommands extends JLabel implements MouseListener {
     private String title;
     private TasksLabel tasksLabel;
+    private ChecklistPanel.CheckList checkList;
     public Boolean isInNext = true;
     public Boolean isInProgress = false;
     public Boolean isInCompleted = false;
 
+    public TaskCommands(ImageIcon icon, String title, ChecklistPanel.CheckList checkList) {
+        this.title = title;
+        this.checkList = checkList;
+        setIcon(icon);
+        addMouseListener(this);
+        setPreferredSize(new Dimension(30, 65));
+        setHorizontalAlignment(SwingConstants.CENTER);
+
+    }
 
     public TaskCommands(ImageIcon icon, String title, TasksLabel tasksLabel) {
         this.title = title;
@@ -39,7 +49,7 @@ public class TaskCommands extends JLabel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (title == "delete") {
+        if (title == "delete task") {
             tasksLabel.setVisible(false);
             removeElement(tasksLabel);
         } else if (title == "right" && isInNext == true) {
@@ -96,6 +106,8 @@ public class TaskCommands extends JLabel implements MouseListener {
             tasksLabel.left.isInCompleted = false;
             tasksLabel.right.isInCompleted = false;
 
+        } else if (title == "delete checklist") {
+            checkList.setVisible(false);
         }
     }
 

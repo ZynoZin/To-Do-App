@@ -22,7 +22,7 @@ public class TasksContentData extends JLabel {
         nextCategory = new ContentCategory("Next Up", 204, 0, 0);
         inProgressCategory = new ContentCategory("In Progress", 212, 179, 0);
         completedCategory = new ContentCategory("Completed", 3, 174, 0);
-        newTask = new NewTask();
+        newTask = new NewTask("taskslist");
         this.setLayout(new GridLayout());
         this.add(nextCategory);
         this.add(inProgressCategory);
