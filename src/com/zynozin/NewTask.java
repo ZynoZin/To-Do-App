@@ -39,7 +39,7 @@ public class NewTask extends JLabel implements MouseListener {
             //adding new tasksLabels to the array to save them later
             TasksContentData.lastTasksSave.add(tasksLabel);
         } else if (title == "checklist") {
-            ChecklistPanel.CheckList checkList = new ChecklistPanel.CheckList();
+            CheckList checkList = new CheckList("false");
             this.setVisible(false);
             MainContent.checklistPanel.add(checkList);
             MainContent.checklistPanel.add(this);

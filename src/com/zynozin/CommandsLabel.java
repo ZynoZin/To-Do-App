@@ -59,7 +59,7 @@ public class CommandsLabel extends JLabel implements MouseListener {
                     completedWriter.newLine();
                 }
             }
-            for (ChecklistPanel.CheckList checkList : ChecklistPanel.lastChecklistSave) {
+            for (CheckList checkList : ChecklistPanel.lastChecklistSave) {
                 String checkContent = checkList.textField.getText();
                 String checkIcon = checkList.checkBox.isChecked.toString();
                 checkWriter.write(checkContent);
