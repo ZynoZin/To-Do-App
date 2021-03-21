@@ -33,10 +33,19 @@ public class TaskCommands extends JLabel implements MouseListener {
 
     }
 
-    private void removeElement(TasksLabel tasksLabel) {
+    private void removeTasksElement(TasksLabel tasksLabel) {
         for (TasksLabel temp : TasksContentData.lastTasksSave) {
             if (temp == tasksLabel) {
                 TasksContentData.lastTasksSave.remove(temp);
+                break;
+            }
+        }
+    }
+
+    private void removeChecklistElement(ChecklistPanel.CheckList checkList) {
+        for (ChecklistPanel.CheckList check : ChecklistPanel.lastChecklistSave) {
+            if (check == checkList) {
+                ChecklistPanel.lastChecklistSave.remove(check);
                 break;
             }
         }
@@ -51,7 +60,7 @@ public class TaskCommands extends JLabel implements MouseListener {
     public void mousePressed(MouseEvent e) {
         if (title == "delete task") {
             tasksLabel.setVisible(false);
-            removeElement(tasksLabel);
+            removeTasksElement(tasksLabel);
         } else if (title == "right" && isInNext == true) {
             tasksLabel.setVisible(false);
             TasksContentData.inProgressCategory.add(tasksLabel);
@@ -108,6 +117,7 @@ public class TaskCommands extends JLabel implements MouseListener {
 
         } else if (title == "delete checklist") {
             checkList.setVisible(false);
+            removeChecklistElement(checkList);
         }
     }
 
