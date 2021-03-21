@@ -20,13 +20,8 @@ public class CheckList extends JLabel {
 
     public CheckList(String state) {
         textField = new JTextField();
-        checkBox = new CheckBox();
-        if (state.equals("true")) {
-            checkBox.setIcon(checkedIcon);
-            checkBox.isChecked = true;
-        } else {
-            checkBox.isChecked = false;
-        }
+        checkBox = new CheckBox(this);
+
         textField.setOpaque(false);
         textField.setBackground(new Color(37, 37, 37));
         textField.setPreferredSize(new Dimension(600, 10));
@@ -36,6 +31,14 @@ public class CheckList extends JLabel {
         textField.setCaretColor(Color.WHITE);
         doc.setDocumentFilter(new DocumentSizeFilter(80));
         textField.setDocument(doc);
+        if (state.equals("true")) {
+            checkBox.setIcon(checkedIcon);
+            this.textField.setForeground(Color.DARK_GRAY);
+            this.textField.setEditable(false);
+            checkBox.isChecked = true;
+        } else {
+            checkBox.isChecked = false;
+        }
         delete = new TaskCommands(trashIcon, "delete checklist", this);
         setOpaque(false);
         setBackground(new Color(37, 37, 37));
