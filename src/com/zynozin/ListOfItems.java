@@ -15,15 +15,14 @@ public class ListOfItems extends JLabel {
     private Font projectsFont = Main.getFontforApp(18f, "fonts/Montserrat-Light.ttf");
     private DefaultStyledDocument doc = new DefaultStyledDocument();
     private TaskCommands delete;
-    private ImageIcon trashIcon = new ImageIcon("images/delete.png");
-    private ImageIcon checkedIcon = new ImageIcon("images/checked.png");
-    private ImageIcon ideaIcon = new ImageIcon("images/idea.png");
-    int test;
+    public static ImageIcon trashIcon = new ImageIcon("images/delete.png");
+    public static ImageIcon checkedIcon = new ImageIcon("images/checked.png");
+    public static ImageIcon ideaIcon = new ImageIcon("images/idea.png");
+    public static ImageIcon wishIcon = new ImageIcon("images/wish.png");
 
-    public ListOfItems(int test) {
+    public ListOfItems(ImageIcon imageIcon) {
         textField = new JTextField();
-        this.test = test;
-        ideaBox = new CheckBox(ideaIcon);
+        ideaBox = new CheckBox(imageIcon);
         textField.setOpaque(false);
         textField.setBackground(new Color(37, 37, 37));
         textField.setPreferredSize(new Dimension(600, 10));
@@ -38,7 +37,7 @@ public class ListOfItems extends JLabel {
         setBackground(new Color(37, 37, 37));
         setBorder(new MatteBorder(0, 0, 1, 0, Color.DARK_GRAY));
         setOpaque(true);
-        setPreferredSize(new Dimension(900, 25));
+        setPreferredSize(new Dimension(900, 30));
         setLayout(new BorderLayout());
         add(textField, BorderLayout.CENTER);
         add(ideaBox, BorderLayout.WEST);

@@ -22,6 +22,13 @@ public class MenuOption extends JLabel implements MouseListener {
 
     }
 
+    public void setEverythingNotVisible() {
+        MainContent.tasksContentScrollPane.setVisible(false);
+        MainContent.notesPanel.setVisible(false);
+        MainContent.ideaScrollPane.setVisible(false);
+        MainContent.checklistScrollPane.setVisible(false);
+        MainContent.wishlistScrollPane.setVisible(false);
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -30,54 +37,51 @@ public class MenuOption extends JLabel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (title == "Tasks List") {
+        if (title.equals("Tasks List")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[0]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[0]);
             ContentFooter.quotes.setAuthor(Quotes.authors[0]);
-            MainContent.notesPanel.setVisible(false);
-            MainContent.checklistScrollPane.setVisible(false);
-            MainContent.ideaScrollPane.setVisible(false);
+            setEverythingNotVisible();
             MyFrame.mainContent.add(MainContent.tasksContentScrollPane, BorderLayout.CENTER);
             MainContent.tasksContentScrollPane.setVisible(true);
-        } else if (title == "Project Ideas") {
+        } else if (title.equals("Project Ideas")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[1]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[1]);
             ContentFooter.quotes.setAuthor(Quotes.authors[1]);
-            MainContent.notesPanel.setVisible(false);
-            MainContent.checklistScrollPane.setVisible(false);
-            MainContent.tasksContentScrollPane.setVisible(false);
+            setEverythingNotVisible();
             MyFrame.mainContent.add(MainContent.ideaScrollPane, BorderLayout.CENTER);
             MainContent.ideaScrollPane.setVisible(true);
-        } else if (title == "Grocery List") {
+        } else if (title.equals("Grocery List")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[2]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[2]);
             ContentFooter.quotes.setAuthor(Quotes.authors[2]);
-        } else if (title == "Checklist") {
+            setEverythingNotVisible();
+        } else if (title.equals("Checklist")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[3]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[3]);
             ContentFooter.quotes.setAuthor(Quotes.authors[3]);
-            MainContent.tasksContentScrollPane.setVisible(false);
-            MainContent.notesPanel.setVisible(false);
-            MainContent.ideaScrollPane.setVisible(false);
+            setEverythingNotVisible();
             MyFrame.mainContent.add(MainContent.checklistScrollPane, BorderLayout.CENTER);
             MainContent.checklistScrollPane.setVisible(true);
-        } else if (title == "Reading Journal") {
+        } else if (title.equals("Reading Journal")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[4]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[4]);
             ContentFooter.quotes.setAuthor(Quotes.authors[4]);
-        } else if (title == "Notes") {
+            setEverythingNotVisible();
+        } else if (title.equals("Notes")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[5]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[5]);
             ContentFooter.quotes.setAuthor(Quotes.authors[5]);
-            MainContent.tasksContentScrollPane.setVisible(false);
-            MainContent.checklistScrollPane.setVisible(false);
-            MainContent.ideaScrollPane.setVisible(false);
+            setEverythingNotVisible();
             MyFrame.mainContent.add(MainContent.notesPanel, BorderLayout.CENTER);
             MainContent.notesPanel.setVisible(true);
-        } else if (title == "Wishlist") {
+        } else if (title.equals("Wishlist")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[6]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[6]);
             ContentFooter.quotes.setAuthor(Quotes.authors[6]);
+            setEverythingNotVisible();
+            MyFrame.mainContent.add(MainContent.wishlistScrollPane, BorderLayout.CENTER);
+            MainContent.wishlistScrollPane.setVisible(true);
         }
         this.setBackground(new Color(44, 44, 44));
 

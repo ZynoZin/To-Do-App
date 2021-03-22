@@ -43,6 +43,7 @@ public class CommandsLabel extends JLabel implements MouseListener {
         BufferedWriter checkWriter = new BufferedWriter(new FileWriter("files/checklist.txt"));
         BufferedWriter checkIconWriter = new BufferedWriter(new FileWriter("files/checklistIcon.txt"));
         BufferedWriter ideaWriter = new BufferedWriter(new FileWriter("files/ideas.txt"));
+        BufferedWriter wishWriter = new BufferedWriter(new FileWriter("files/wishes.txt"));
         try {
             int i = 0;
             for (TasksLabel tskLabel : TasksContentData.lastTasksSave) {
@@ -71,6 +72,11 @@ public class CommandsLabel extends JLabel implements MouseListener {
                 ideaWriter.write(ideaContent);
                 ideaWriter.newLine();
             }
+            for (ListOfItems wishItems : ItemsPanel.lastWishlistSave) {
+                String wishContent = wishItems.textField.getText();
+                wishWriter.write(wishContent);
+                wishWriter.newLine();
+            }
             String notesContent = MainContent.notesPanel.notesArea.getText();
             notesWriter.write(notesContent);
             nextWriter.close();
@@ -80,6 +86,7 @@ public class CommandsLabel extends JLabel implements MouseListener {
             checkWriter.close();
             checkIconWriter.close();
             ideaWriter.close();
+            wishWriter.close();
         } catch (IOException e) {
             // Cxception handling
         }

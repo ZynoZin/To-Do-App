@@ -13,27 +13,16 @@ public class ItemsPanel extends JPanel {
     private NewTask newTask;
     public static List<ListOfItems> lastChecklistSave = new ArrayList<ListOfItems>();
     public static List<ListOfItems> lastIdeaListSave = new ArrayList<ListOfItems>();
+    public static List<ListOfItems> lastWishlistSave = new ArrayList<ListOfItems>();
     private ImageIcon checkedIcon = new ImageIcon("images/checked.png");
 
     public ItemsPanel(String type) throws IOException {
-        newTask = new NewTask("idea");
+        newTask = new NewTask(type);
         setBackground(new Color(37, 37, 37));
         setOpaque(true);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         writeSavedElements(type);
         setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
-        add(newTask);
-        setBorder(new EmptyBorder(50, 35, 0, 0));
-
-    }
-
-    public ItemsPanel() throws IOException {
-        newTask = new NewTask("checklist");
-        setBackground(new Color(37, 37, 37));
-        setOpaque(true);
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
-        writeSavedElements("checklist");
         add(newTask);
         setBorder(new EmptyBorder(50, 35, 0, 0));
 
@@ -65,7 +54,7 @@ public class ItemsPanel extends JPanel {
             String ideaLine = idea.readLine();
             try {
                 while (ideaLine != null) {
-                    ListOfItems listOfItems = new ListOfItems(1);
+                    ListOfItems listOfItems = new ListOfItems(ListOfItems.ideaIcon);
                     listOfItems.textField.setText(ideaLine);
                     this.add(listOfItems);
                     lastIdeaListSave.add(listOfItems);
@@ -76,6 +65,23 @@ public class ItemsPanel extends JPanel {
                 e.printStackTrace();
             } finally {
                 idea.close();
+            }
+        } else if (type.equals("wishlist")) {
+            BufferedReader wish = new BufferedReader(new FileReader("files/wishes.txt"));
+            String wishLine = wish.readLine();
+            try {
+                while (wishLine != null) {
+                    ListOfItems listOfItems = new ListOfItems(ListOfItems.wishIcon);
+                    listOfItems.textField.setText(wishLine);
+                    this.add(listOfItems);
+                    lastIdeaListSave.add(listOfItems);
+                    wishLine = wish.readLine();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                wish.close();
             }
         }
 

@@ -12,7 +12,7 @@ public class CheckBox extends JLabel implements MouseListener {
     ListOfItems listOfItems;
 
     public CheckBox(ImageIcon imageIcon) {
-        setPreferredSize(new Dimension(20, 5));
+        setPreferredSize(new Dimension(30, 20));
         setOpaque(true);
         setIcon(imageIcon);
         setBackground(new Color(37, 37, 37));
