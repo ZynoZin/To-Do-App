@@ -36,12 +36,18 @@ public class MenuOption extends JLabel implements MouseListener {
             ContentFooter.quotes.setAuthor(Quotes.authors[0]);
             MainContent.notesPanel.setVisible(false);
             MainContent.checklistScrollPane.setVisible(false);
+            MainContent.ideaScrollPane.setVisible(false);
             MyFrame.mainContent.add(MainContent.tasksContentScrollPane, BorderLayout.CENTER);
             MainContent.tasksContentScrollPane.setVisible(true);
         } else if (title == "Project Ideas") {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[1]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[1]);
             ContentFooter.quotes.setAuthor(Quotes.authors[1]);
+            MainContent.notesPanel.setVisible(false);
+            MainContent.checklistScrollPane.setVisible(false);
+            MainContent.tasksContentScrollPane.setVisible(false);
+            MyFrame.mainContent.add(MainContent.ideaScrollPane, BorderLayout.CENTER);
+            MainContent.ideaScrollPane.setVisible(true);
         } else if (title == "Grocery List") {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[2]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[2]);
@@ -52,6 +58,7 @@ public class MenuOption extends JLabel implements MouseListener {
             ContentFooter.quotes.setAuthor(Quotes.authors[3]);
             MainContent.tasksContentScrollPane.setVisible(false);
             MainContent.notesPanel.setVisible(false);
+            MainContent.ideaScrollPane.setVisible(false);
             MyFrame.mainContent.add(MainContent.checklistScrollPane, BorderLayout.CENTER);
             MainContent.checklistScrollPane.setVisible(true);
         } else if (title == "Reading Journal") {
@@ -64,6 +71,7 @@ public class MenuOption extends JLabel implements MouseListener {
             ContentFooter.quotes.setAuthor(Quotes.authors[5]);
             MainContent.tasksContentScrollPane.setVisible(false);
             MainContent.checklistScrollPane.setVisible(false);
+            MainContent.ideaScrollPane.setVisible(false);
             MyFrame.mainContent.add(MainContent.notesPanel, BorderLayout.CENTER);
             MainContent.notesPanel.setVisible(true);
         } else if (title == "Wishlist") {

@@ -8,14 +8,14 @@ import java.awt.event.MouseListener;
 public class TaskCommands extends JLabel implements MouseListener {
     private String title;
     private TasksLabel tasksLabel;
-    private CheckList checkList;
+    private ListOfItems listOfItems;
     public Boolean isInNext = true;
     public Boolean isInProgress = false;
     public Boolean isInCompleted = false;
 
-    public TaskCommands(ImageIcon icon, String title, CheckList checkList) {
+    public TaskCommands(ImageIcon icon, String title, ListOfItems listOfItems) {
         this.title = title;
-        this.checkList = checkList;
+        this.listOfItems = listOfItems;
         setIcon(icon);
         addMouseListener(this);
         setPreferredSize(new Dimension(30, 65));
@@ -35,17 +35,17 @@ public class TaskCommands extends JLabel implements MouseListener {
 
     private void removeTasksElement(TasksLabel tasksLabel) {
         for (TasksLabel temp : TasksContentData.lastTasksSave) {
-            if (temp == tasksLabel) {
+            if (temp.equals(tasksLabel)) {
                 TasksContentData.lastTasksSave.remove(temp);
                 break;
             }
         }
     }
 
-    private void removeChecklistElement(CheckList checkList) {
-        for (CheckList check : ChecklistPanel.lastChecklistSave) {
-            if (check == checkList) {
-                ChecklistPanel.lastChecklistSave.remove(check);
+    private void removeChecklistElement(ListOfItems listOfItems) {
+        for (ListOfItems check : ItemsPanel.lastChecklistSave) {
+            if (check.equals(listOfItems)) {
+                ItemsPanel.lastChecklistSave.remove(check);
                 break;
             }
         }
@@ -116,8 +116,8 @@ public class TaskCommands extends JLabel implements MouseListener {
             tasksLabel.right.isInCompleted = false;
 
         } else if (title == "delete checklist") {
-            checkList.setVisible(false);
-            removeChecklistElement(checkList);
+            listOfItems.setVisible(false);
+            removeChecklistElement(listOfItems);
         }
     }
 

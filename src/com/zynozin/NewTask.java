@@ -15,9 +15,9 @@ public class NewTask extends JLabel implements MouseListener {
         setOpaque(true);
         setText("+ New");
         setForeground(Color.LIGHT_GRAY);
-        if (title == "taskslist")
+        if (title.equals("taskslist"))
             this.setPreferredSize(new Dimension(320, 30));
-        else if (title == "checklist")
+        else if (title.equals("checklist") || title.equals("idea"))
             this.setPreferredSize(new Dimension(900, 30));
         this.addMouseListener(this);
         setFont(newFont);
@@ -39,12 +39,19 @@ public class NewTask extends JLabel implements MouseListener {
             //adding new tasksLabels to the array to save them later
             TasksContentData.lastTasksSave.add(tasksLabel);
         } else if (title == "checklist") {
-            CheckList checkList = new CheckList("false");
+            ListOfItems checklistItems = new ListOfItems("false");
             this.setVisible(false);
-            MainContent.checklistPanel.add(checkList);
+            MainContent.checklistPanel.add(checklistItems);
             MainContent.checklistPanel.add(this);
             this.setVisible(true);
-            ChecklistPanel.lastChecklistSave.add(checkList);
+            ItemsPanel.lastChecklistSave.add(checklistItems);
+        } else if (title == "idea") {
+            ListOfItems ideaItems = new ListOfItems(1);
+            this.setVisible(false);
+            MainContent.ideaPanel.add(ideaItems);
+            MainContent.ideaPanel.add(this);
+            this.setVisible(true);
+            ItemsPanel.lastIdeaListSave.add(ideaItems);
         }
     }
 

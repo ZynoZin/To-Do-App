@@ -1,7 +1,5 @@
 package com.zynozin;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -44,6 +42,7 @@ public class CommandsLabel extends JLabel implements MouseListener {
         BufferedWriter notesWriter = new BufferedWriter(new FileWriter("files/notes.txt"));
         BufferedWriter checkWriter = new BufferedWriter(new FileWriter("files/checklist.txt"));
         BufferedWriter checkIconWriter = new BufferedWriter(new FileWriter("files/checklistIcon.txt"));
+        BufferedWriter ideaWriter = new BufferedWriter(new FileWriter("files/ideas.txt"));
         try {
             int i = 0;
             for (TasksLabel tskLabel : TasksContentData.lastTasksSave) {
@@ -59,13 +58,18 @@ public class CommandsLabel extends JLabel implements MouseListener {
                     completedWriter.newLine();
                 }
             }
-            for (CheckList checkList : ChecklistPanel.lastChecklistSave) {
-                String checkContent = checkList.textField.getText();
-                String checkIcon = checkList.checkBox.isChecked.toString();
+            for (ListOfItems listOfItems : ItemsPanel.lastChecklistSave) {
+                String checkContent = listOfItems.textField.getText();
+                String checkIcon = listOfItems.checklistBox.isChecked.toString();
                 checkWriter.write(checkContent);
                 checkIconWriter.write(checkIcon);
                 checkWriter.newLine();
                 checkIconWriter.newLine();
+            }
+            for (ListOfItems ideaItems : ItemsPanel.lastIdeaListSave) {
+                String ideaContent = ideaItems.textField.getText();
+                ideaWriter.write(ideaContent);
+                ideaWriter.newLine();
             }
             String notesContent = MainContent.notesPanel.notesArea.getText();
             notesWriter.write(notesContent);
@@ -75,6 +79,7 @@ public class CommandsLabel extends JLabel implements MouseListener {
             notesWriter.close();
             checkWriter.close();
             checkIconWriter.close();
+            ideaWriter.close();
         } catch (IOException e) {
             // Cxception handling
         }
