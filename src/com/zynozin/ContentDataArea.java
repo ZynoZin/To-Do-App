@@ -12,12 +12,12 @@ import java.awt.event.KeyEvent;
 
 import components.DocumentSizeFilter;
 
-public class TasksArea extends JTextArea {
+public class ContentDataArea extends JTextArea {
     private Font tasksFont = Main.getFontforApp(16f, "fonts/Montserrat-Medium.ttf");
     private DefaultStyledDocument doc = new DefaultStyledDocument();
 
 
-    public TasksArea() {
+    public ContentDataArea() {
         doc.setDocumentFilter(new DocumentSizeFilter(60));
         this.setBackground(new Color(250, 37, 37));
         this.setLineWrap(true);

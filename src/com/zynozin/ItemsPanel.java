@@ -37,7 +37,7 @@ public class ItemsPanel extends JPanel {
             try {
                 while (checkLine != null) {
                     iconLine = icon.readLine();
-                    ListOfItems listOfItems = new ListOfItems(iconLine);
+                    ListOfItems listOfItems = new ListOfItems(iconLine, "taskslist");
                     listOfItems.textField.setText(checkLine);
                     this.add(listOfItems);
                     lastChecklistSave.add(listOfItems);

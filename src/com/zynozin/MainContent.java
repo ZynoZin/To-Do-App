@@ -22,7 +22,8 @@ public class MainContent extends JPanel {
     };
     private ContentHeader contentHeader = contentHeaders[0];
     private ContentFooter contentFooter;
-    private TasksContentData contentData;
+    private ContentDataPanel tasksData;
+    private ContentDataPanel groceryData;
     public static NotesPanel notesPanel;
     public static ItemsPanel checklistPanel;
     public static ItemsPanel ideaPanel;
@@ -31,21 +32,24 @@ public class MainContent extends JPanel {
     public static ModernScrollPane checklistScrollPane;
     public static ModernScrollPane ideaScrollPane;
     public static ModernScrollPane wishlistScrollPane;
+    public static ModernScrollPane groceryScrollPane;
 
     public MainContent() throws IOException {
         contentFooter = new ContentFooter();
-        contentData = new TasksContentData();
+        tasksData = new ContentDataPanel("taskslist");
+        groceryData = new ContentDataPanel("grocery list");
         notesPanel = new NotesPanel();
         checklistPanel = new ItemsPanel("checklist");
         ideaPanel = new ItemsPanel("idea");
         wishlistPanel = new ItemsPanel("wishlist");
-        tasksContentScrollPane = new ModernScrollPane(contentData);
+        tasksContentScrollPane = new ModernScrollPane(tasksData);
         checklistScrollPane = new ModernScrollPane(checklistPanel);
         ideaScrollPane = new ModernScrollPane(ideaPanel);
         wishlistScrollPane = new ModernScrollPane(wishlistPanel);
+        groceryScrollPane = new ModernScrollPane(groceryData);
         this.setLayout(new BorderLayout());
         this.add(contentHeader, BorderLayout.NORTH);
-        initVisibility();
+        this.add(tasksContentScrollPane, BorderLayout.CENTER);
         writeSavedElements();
         this.add(contentFooter, BorderLayout.SOUTH);
         this.setOpaque(true);
@@ -53,9 +57,6 @@ public class MainContent extends JPanel {
         this.setBackground(new Color(37, 37, 37));
     }
 
-    public void initVisibility() {
-        this.add(tasksContentScrollPane, BorderLayout.CENTER);
-    }
 
     public void setContentHeader(ContentHeader contentHeader) {
         this.contentHeader.setVisible(false);

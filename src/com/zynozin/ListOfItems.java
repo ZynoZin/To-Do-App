@@ -14,7 +14,7 @@ public class ListOfItems extends JLabel {
     public CheckBox ideaBox;
     private Font projectsFont = Main.getFontforApp(18f, "fonts/Montserrat-Light.ttf");
     private DefaultStyledDocument doc = new DefaultStyledDocument();
-    private TaskCommands delete;
+    private ContentDataCommands delete;
     public static ImageIcon trashIcon = new ImageIcon("images/delete.png");
     public static ImageIcon checkedIcon = new ImageIcon("images/checked.png");
     public static ImageIcon ideaIcon = new ImageIcon("images/idea.png");
@@ -32,7 +32,7 @@ public class ListOfItems extends JLabel {
         textField.setCaretColor(Color.WHITE);
         doc.setDocumentFilter(new DocumentSizeFilter(80));
         textField.setDocument(doc);
-        delete = new TaskCommands(trashIcon, "delete checklist", this);
+        delete = new ContentDataCommands(trashIcon, "delete checklist", this);
         setOpaque(false);
         setBackground(new Color(37, 37, 37));
         setBorder(new MatteBorder(0, 0, 1, 0, Color.DARK_GRAY));
@@ -44,7 +44,7 @@ public class ListOfItems extends JLabel {
         add(delete, BorderLayout.EAST);
     }
 
-    public ListOfItems(String state) {
+    public ListOfItems(String state, String title) {
         textField = new JTextField();
         checklistBox = new CheckBox(this);
         textField.setOpaque(false);
@@ -64,12 +64,15 @@ public class ListOfItems extends JLabel {
         } else {
             checklistBox.isChecked = false;
         }
-        delete = new TaskCommands(trashIcon, "delete checklist", this);
+        delete = new ContentDataCommands(trashIcon, title, this);
         setOpaque(false);
         setBackground(new Color(37, 37, 37));
         setBorder(new MatteBorder(0, 0, 1, 0, Color.DARK_GRAY));
         setOpaque(true);
-        setPreferredSize(new Dimension(900, 25));
+        if (title.equals("taskslist"))
+            setPreferredSize(new Dimension(900, 25));
+        else
+            setPreferredSize(new Dimension(250, 25));
         setLayout(new BorderLayout());
         add(textField, BorderLayout.CENTER);
         add(checklistBox, BorderLayout.WEST);
