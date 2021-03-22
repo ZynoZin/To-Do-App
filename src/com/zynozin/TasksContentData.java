@@ -46,6 +46,7 @@ public class TasksContentData extends JLabel {
             while (nextLine != null) {
                 TasksLabel tasksLabel = new TasksLabel();
                 tasksLabel.tasksArea.setText(nextLine);
+                tasksLabel.initIcons(tasksLabel);
                 nextCategory.add(tasksLabel);
                 lastTasksSave.add(tasksLabel);
                 nextLine = next.readLine();
@@ -53,16 +54,18 @@ public class TasksContentData extends JLabel {
             while (inProgressLine != null) {
                 TasksLabel tasksLabel = new TasksLabel();
                 tasksLabel.tasksArea.setText(inProgressLine);
-                inProgressCategory.add(tasksLabel);
                 tasksLabel.currentCategory = "in progress category";
+                tasksLabel.initIcons(tasksLabel);
+                inProgressCategory.add(tasksLabel);
                 lastTasksSave.add(tasksLabel);
                 inProgressLine = inProgress.readLine();
             }
             while (completedLine != null) {
                 TasksLabel tasksLabel = new TasksLabel();
                 tasksLabel.tasksArea.setText(completedLine);
-                completedCategory.add(tasksLabel);
                 tasksLabel.currentCategory = "completed category";
+                tasksLabel.initIcons(tasksLabel);
+                completedCategory.add(tasksLabel);
                 lastTasksSave.add(tasksLabel);
                 completedLine = completed.readLine();
             }

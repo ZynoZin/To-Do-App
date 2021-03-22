@@ -23,6 +23,22 @@ public class TaskCommands extends JLabel implements MouseListener {
 
     }
 
+    public void initPlace(String currentCategroy) {
+        if (currentCategroy.equals("next category")) {
+            this.isInNext = true;
+            this.isInProgress = false;
+            this.isInCompleted = false;
+        } else if (currentCategroy.equals("in progress category")) {
+            this.isInNext = false;
+            this.isInProgress = true;
+            this.isInCompleted = false;
+        } else if (currentCategroy.equals("completed category")) {
+            this.isInNext = false;
+            this.isInProgress = false;
+            this.isInCompleted = true;
+        }
+    }
+
     public TaskCommands(ImageIcon icon, String title, TasksLabel tasksLabel) {
         this.title = title;
         this.tasksLabel = tasksLabel;
@@ -61,7 +77,7 @@ public class TaskCommands extends JLabel implements MouseListener {
         if (title == "delete task") {
             tasksLabel.setVisible(false);
             removeTasksElement(tasksLabel);
-        } else if (title == "right" && isInNext == true) {
+        } else if (title == "right" && isInNext.equals(true)) {
             tasksLabel.setVisible(false);
             TasksContentData.inProgressCategory.add(tasksLabel);
             tasksLabel.currentCategory = "in progress category";
@@ -73,7 +89,7 @@ public class TaskCommands extends JLabel implements MouseListener {
             tasksLabel.right.isInProgress = true;
             tasksLabel.left.isInCompleted = false;
             tasksLabel.right.isInCompleted = false;
-        } else if (title == "right" && isInProgress == true) {
+        } else if (title == "right" && isInProgress.equals(true)) {
             tasksLabel.setVisible(false);
             TasksContentData.completedCategory.add(tasksLabel);
             tasksLabel.currentCategory = "completed category";
@@ -86,7 +102,7 @@ public class TaskCommands extends JLabel implements MouseListener {
             tasksLabel.left.isInCompleted = true;
             tasksLabel.right.isInCompleted = true;
 
-        } else if (title == "left" && isInProgress == true) {
+        } else if (title == "left" && isInProgress.equals(true)) {
             tasksLabel.setVisible(false);
             TasksContentData.newTask.setVisible(false);
             TasksContentData.nextCategory.add(tasksLabel);
@@ -102,7 +118,7 @@ public class TaskCommands extends JLabel implements MouseListener {
             tasksLabel.left.isInCompleted = false;
             tasksLabel.right.isInCompleted = false;
 
-        } else if (title == "left" && isInCompleted == true) {
+        } else if (title == "left" && isInCompleted.equals(true)) {
             tasksLabel.setVisible(false);
             TasksContentData.inProgressCategory.add(tasksLabel);
             tasksLabel.currentCategory = "in progress category";

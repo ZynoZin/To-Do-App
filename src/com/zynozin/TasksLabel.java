@@ -41,5 +41,23 @@ public class TasksLabel extends JLabel {
 
     }
 
+    public void initIcons(TasksLabel tasksLabel) {
+        if (tasksLabel.currentCategory.equals("next category")) {
+            tasksLabel.left.initPlace("next category");
+            tasksLabel.right.initPlace("next category");
+            tasksLabel.right.setVisible(true);
+            tasksLabel.left.setVisible(false);
+        } else if (tasksLabel.currentCategory.equals("in progress category")) {
+            tasksLabel.left.initPlace("in progress category");
+            tasksLabel.right.initPlace("in progress category");
+            tasksLabel.left.setVisible(true);
+            tasksLabel.right.setVisible(true);
+        } else if (tasksLabel.currentCategory.equals("completed category")) {
+            tasksLabel.left.initPlace("completed category");
+            tasksLabel.right.initPlace("completed category");
+            tasksLabel.right.setVisible(false);
+            tasksLabel.left.setVisible(true);
+        }
+    }
 
 }
