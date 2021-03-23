@@ -70,7 +70,7 @@ public class ContentDataCommands extends JLabel implements MouseListener {
     private void removeFruitsListElement(ListOfItems listOfItems) {
         for (ListOfItems fruit : ContentDataPanel.lastFruitsListSave) {
             if (fruit.equals(listOfItems)) {
-                ContentDataPanel.lastVegetablesListSave.remove(fruit);
+                ContentDataPanel.lastFruitsListSave.remove(fruit);
                 break;
             }
         }
@@ -79,7 +79,7 @@ public class ContentDataCommands extends JLabel implements MouseListener {
     private void removeDrinksListElement(ListOfItems listOfItems) {
         for (ListOfItems drink : ContentDataPanel.lastDrinksListSave) {
             if (drink.equals(listOfItems)) {
-                ContentDataPanel.lastVegetablesListSave.remove(drink);
+                ContentDataPanel.lastDrinksListSave.remove(drink);
                 break;
             }
         }
@@ -88,7 +88,7 @@ public class ContentDataCommands extends JLabel implements MouseListener {
     private void removeOtherListElement(ListOfItems listOfItems) {
         for (ListOfItems other : ContentDataPanel.lastOtherListSave) {
             if (other.equals(listOfItems)) {
-                ContentDataPanel.lastVegetablesListSave.remove(other);
+                ContentDataPanel.lastOtherListSave.remove(other);
                 break;
             }
         }
@@ -102,6 +102,52 @@ public class ContentDataCommands extends JLabel implements MouseListener {
             }
         }
     }
+
+    private void removeBooklistElement(ListOfItems listOfItems) {
+        for (ListOfItems book : ContentDataPanel.lastBookListSave) {
+            if (book.equals(listOfItems)) {
+                ContentDataPanel.lastBookListSave.remove(book);
+                break;
+            }
+        }
+    }
+
+    private void removeStartedListElement(ListOfItems listOfItems) {
+        for (ListOfItems started : ContentDataPanel.lastStartedListSave) {
+            if (started.equals(listOfItems)) {
+                ContentDataPanel.lastStartedListSave.remove(started);
+                break;
+            }
+        }
+    }
+
+    private void removeFinishedListElement(ListOfItems listOfItems) {
+        for (ListOfItems finished : ContentDataPanel.lastFinishedListSave) {
+            if (finished.equals(listOfItems)) {
+                ContentDataPanel.lastFinishedListSave.remove(finished);
+                break;
+            }
+        }
+    }
+
+    private void removeIdeaListElement(ListOfItems listOfItems) {
+        for (ListOfItems idea : ItemsPanel.lastIdeaListSave) {
+            if (idea.equals(listOfItems)) {
+                ItemsPanel.lastIdeaListSave.remove(idea);
+                break;
+            }
+        }
+    }
+
+    private void removeWishListElement(ListOfItems listOfItems) {
+        for (ListOfItems wish : ItemsPanel.lastWishlistSave) {
+            if (wish.equals(listOfItems)) {
+                ItemsPanel.lastWishlistSave.remove(wish);
+                break;
+            }
+        }
+    }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -167,9 +213,15 @@ public class ContentDataCommands extends JLabel implements MouseListener {
             contentDataLabel.left.isInCompleted = false;
             contentDataLabel.right.isInCompleted = false;
 
-        } else if (title.equals("delete checklist")) {
+        } else if (title.equals("checklist")) {
             listOfItems.setVisible(false);
             removeChecklistElement(listOfItems);
+        } else if (title.equals("idea")) {
+            listOfItems.setVisible(false);
+            removeIdeaListElement(listOfItems);
+        } else if (title.equals("wish")) {
+            listOfItems.setVisible(false);
+            removeWishListElement(listOfItems);
         } else if (title.equals("grocery list vegetables")) {
             listOfItems.setVisible(false);
             removeVegetablesListElement(listOfItems);
@@ -182,6 +234,15 @@ public class ContentDataCommands extends JLabel implements MouseListener {
         } else if (title.equals("grocery list other")) {
             listOfItems.setVisible(false);
             removeOtherListElement(listOfItems);
+        } else if (title.equals("book")) {
+            listOfItems.setVisible(false);
+            removeBooklistElement(listOfItems);
+        } else if (title.equals("started")) {
+            listOfItems.setVisible(false);
+            removeStartedListElement(listOfItems);
+        } else if (title.equals("finished")) {
+            listOfItems.setVisible(false);
+            removeFinishedListElement(listOfItems);
         }
     }
 

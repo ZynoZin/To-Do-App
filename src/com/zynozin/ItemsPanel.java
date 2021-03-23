@@ -37,7 +37,7 @@ public class ItemsPanel extends JPanel {
             try {
                 while (checkLine != null) {
                     iconLine = icon.readLine();
-                    ListOfItems listOfItems = new ListOfItems(iconLine, "taskslist");
+                    ListOfItems listOfItems = new ListOfItems(iconLine, "checklist");
                     listOfItems.textField.setText(checkLine);
                     this.add(listOfItems);
                     lastChecklistSave.add(listOfItems);
@@ -54,7 +54,7 @@ public class ItemsPanel extends JPanel {
             String ideaLine = idea.readLine();
             try {
                 while (ideaLine != null) {
-                    ListOfItems listOfItems = new ListOfItems(ListOfItems.ideaIcon);
+                    ListOfItems listOfItems = new ListOfItems(ListOfItems.ideaIcon, "idea", 18f, 80, 600, 900, true, true);
                     listOfItems.textField.setText(ideaLine);
                     this.add(listOfItems);
                     lastIdeaListSave.add(listOfItems);
@@ -71,10 +71,10 @@ public class ItemsPanel extends JPanel {
             String wishLine = wish.readLine();
             try {
                 while (wishLine != null) {
-                    ListOfItems listOfItems = new ListOfItems(ListOfItems.wishIcon);
+                    ListOfItems listOfItems = new ListOfItems(ListOfItems.wishIcon, "wish", 18f, 80, 600, 900, true, true);
                     listOfItems.textField.setText(wishLine);
                     this.add(listOfItems);
-                    lastIdeaListSave.add(listOfItems);
+                    lastWishlistSave.add(listOfItems);
                     wishLine = wish.readLine();
                 }
 

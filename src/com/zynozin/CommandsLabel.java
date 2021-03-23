@@ -52,6 +52,9 @@ public class CommandsLabel extends JLabel implements MouseListener {
         BufferedWriter otherIconWriter = new BufferedWriter(new FileWriter("files/otherIcon.txt"));
         BufferedWriter ideaWriter = new BufferedWriter(new FileWriter("files/ideas.txt"));
         BufferedWriter wishWriter = new BufferedWriter(new FileWriter("files/wishes.txt"));
+        BufferedWriter bookWriter = new BufferedWriter(new FileWriter("files/books.txt"));
+        BufferedWriter startedWriter = new BufferedWriter(new FileWriter("files/started.txt"));
+        BufferedWriter finishedWriter = new BufferedWriter(new FileWriter("files/finished.txt"));
         try {
             int i = 0;
             for (ContentDataLabel tskLabel : ContentDataPanel.lastTasksSave) {
@@ -107,6 +110,21 @@ public class CommandsLabel extends JLabel implements MouseListener {
                 otherWriter.newLine();
                 otherIconWriter.newLine();
             }
+            for (ListOfItems listOfItems : ContentDataPanel.lastBookListSave) {
+                String bookContent = listOfItems.textField.getText();
+                bookWriter.write(bookContent);
+                bookWriter.newLine();
+            }
+            for (ListOfItems listOfItems : ContentDataPanel.lastStartedListSave) {
+                String startedContent = listOfItems.textField.getText();
+                startedWriter.write(startedContent);
+                startedWriter.newLine();
+            }
+            for (ListOfItems listOfItems : ContentDataPanel.lastFinishedListSave) {
+                String finishedContent = listOfItems.textField.getText();
+                finishedWriter.write(finishedContent);
+                finishedWriter.newLine();
+            }
             for (ListOfItems ideaItems : ItemsPanel.lastIdeaListSave) {
                 String ideaContent = ideaItems.textField.getText();
                 ideaWriter.write(ideaContent);
@@ -135,6 +153,9 @@ public class CommandsLabel extends JLabel implements MouseListener {
             fruitsIconWriter.close();
             drinksIconWriter.close();
             otherIconWriter.close();
+            bookWriter.close();
+            startedWriter.close();
+            finishedWriter.close();
         } catch (IOException e) {
             // Cxception handling
         }

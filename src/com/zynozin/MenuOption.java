@@ -29,6 +29,8 @@ public class MenuOption extends JLabel implements MouseListener {
         MainContent.checklistScrollPane.setVisible(false);
         MainContent.wishlistScrollPane.setVisible(false);
         MainContent.groceryScrollPane.setVisible(false);
+        MainContent.bookScrollPane.setVisible(false);
+
     }
 
     @Override
@@ -71,6 +73,8 @@ public class MenuOption extends JLabel implements MouseListener {
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[4]);
             ContentFooter.quotes.setAuthor(Quotes.authors[4]);
             setEverythingNotVisible();
+            MyFrame.mainContent.add(MainContent.bookScrollPane, BorderLayout.CENTER);
+            MainContent.bookScrollPane.setVisible(true);
         } else if (title.equals("Notes")) {
             MyFrame.mainContent.setContentHeader(MainContent.contentHeaders[5]);
             ContentFooter.quotes.setQuote(Quotes.quotesLabel[5]);

@@ -24,6 +24,7 @@ public class MainContent extends JPanel {
     private ContentFooter contentFooter;
     private ContentDataPanel tasksData;
     private ContentDataPanel groceryData;
+    private ContentDataPanel bookData;
     public static NotesPanel notesPanel;
     public static ItemsPanel checklistPanel;
     public static ItemsPanel ideaPanel;
@@ -33,11 +34,13 @@ public class MainContent extends JPanel {
     public static ModernScrollPane ideaScrollPane;
     public static ModernScrollPane wishlistScrollPane;
     public static ModernScrollPane groceryScrollPane;
+    public static ModernScrollPane bookScrollPane;
 
     public MainContent() throws IOException {
         contentFooter = new ContentFooter();
         tasksData = new ContentDataPanel("taskslist");
         groceryData = new ContentDataPanel("grocery list");
+        bookData = new ContentDataPanel("reading journal");
         notesPanel = new NotesPanel();
         checklistPanel = new ItemsPanel("checklist");
         ideaPanel = new ItemsPanel("idea");
@@ -47,6 +50,7 @@ public class MainContent extends JPanel {
         ideaScrollPane = new ModernScrollPane(ideaPanel);
         wishlistScrollPane = new ModernScrollPane(wishlistPanel);
         groceryScrollPane = new ModernScrollPane(groceryData);
+        bookScrollPane = new ModernScrollPane(bookData);
         this.setLayout(new BorderLayout());
         this.add(contentHeader, BorderLayout.NORTH);
         this.add(tasksContentScrollPane, BorderLayout.CENTER);

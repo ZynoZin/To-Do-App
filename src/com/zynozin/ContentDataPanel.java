@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentDataPanel extends JPanel {
-    private final int WIDTH = 1120;
-    private final int HEIGHT = 1000;
     public static ContentCategory nextCategory;
     public static ContentCategory inProgressCategory;
     public static ContentCategory completedCategory;
@@ -20,22 +18,31 @@ public class ContentDataPanel extends JPanel {
     public static ContentCategory fruitsCategory;
     public static ContentCategory drinksCategory;
     public static ContentCategory otherCategory;
+    public static ContentCategory bookNameCategory;
+    public static ContentCategory startedCategory;
+    public static ContentCategory finishedCategory;
     public static NewTask newTask;
     public static NewTask newVegetable;
     public static NewTask newFruit;
     public static NewTask newDrink;
     public static NewTask newOther;
+    public static NewTask newBook;
     public static List<ContentDataLabel> lastTasksSave = new ArrayList<ContentDataLabel>();
     public static List<ListOfItems> lastVegetablesListSave = new ArrayList<ListOfItems>();
     public static List<ListOfItems> lastFruitsListSave = new ArrayList<ListOfItems>();
     public static List<ListOfItems> lastDrinksListSave = new ArrayList<ListOfItems>();
     public static List<ListOfItems> lastOtherListSave = new ArrayList<ListOfItems>();
+    public static List<ListOfItems> lastBookListSave = new ArrayList<ListOfItems>();
+    public static List<ListOfItems> lastStartedListSave = new ArrayList<ListOfItems>();
+    public static List<ListOfItems> lastFinishedListSave = new ArrayList<ListOfItems>();
 
 
     public ContentDataPanel(String type) throws IOException {
         this.setLayout(new GridLayout());
         addProperPanels(type);
         writeSavedElements(type);
+        int HEIGHT = 1000;
+        int WIDTH = 1120;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setOpaque(true);
         this.setBorder(new EmptyBorder(40, 0, 0, 0));
@@ -65,6 +72,15 @@ public class ContentDataPanel extends JPanel {
             this.add(drinksCategory);
             this.add(otherCategory);
 
+        } else if (type.equals("reading journal")) {
+            bookNameCategory = new ContentCategory("Book Name", true);
+            startedCategory = new ContentCategory("Started", true);
+            finishedCategory = new ContentCategory("Finished", true);
+            newBook = new NewTask("reading journal");
+            this.add(bookNameCategory);
+            this.add(startedCategory);
+            this.add(finishedCategory);
+            bookNameCategory.add(newBook);
         }
     }
 
@@ -175,8 +191,44 @@ public class ContentDataPanel extends JPanel {
                 other.close();
                 otherIcon.close();
             }
+        } else if (type.equals("reading journal")) {
+            BufferedReader book = new BufferedReader(new FileReader("files/books.txt"));
+            BufferedReader started = new BufferedReader(new FileReader("files/started.txt"));
+            BufferedReader finished = new BufferedReader(new FileReader("files/finished.txt"));
+            String bookLine = book.readLine();
+            String startedLine = started.readLine();
+            String finishedLine = finished.readLine();
+            try {
+                while (bookLine != null) {
+                    ListOfItems bookItem = new ListOfItems(ListOfItems.bookIcon, "book", 14f, 35, 330, 360, true, true);
+                    bookItem.textField.setText(bookLine);
+                    bookNameCategory.add(bookItem);
+                    lastBookListSave.add(bookItem);
+                    bookLine = book.readLine();
+                }
+                while (startedLine != null) {
+                    ListOfItems startedItem = new ListOfItems(ListOfItems.bookIcon, "started", 14f, 35, 330, 360, false, true);
+                    startedItem.textField.setText(bookLine);
+                    startedCategory.add(startedItem);
+                    lastStartedListSave.add(startedItem);
+                    startedLine = started.readLine();
+                }
+                while (finishedLine != null) {
+                    ListOfItems finishedItem = new ListOfItems(ListOfItems.bookIcon, "finished", 14f, 35, 330, 360, false, true);
+                    finishedItem.textField.setText(finishedLine);
+                    finishedCategory.add(finishedItem);
+                    lastFinishedListSave.add(finishedItem);
+                    finishedLine = finished.readLine();
+                }
+                bookNameCategory.add(newBook);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                book.close();
+                started.close();
+                finished.close();
+            }
         }
-
 
     }
 }
